@@ -2,6 +2,7 @@
 # Example code for using the classes in espmorfo.py
 # -----------------------------------------------------------------------------
 
+import re
 from espmorfo import EspMorfoWordLabeler
 
 wordlabeler = EspMorfoWordLabeler()
