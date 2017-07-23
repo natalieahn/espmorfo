@@ -26,7 +26,7 @@ import re
 import xlrd
 from bisect import bisect_left
 
-default_rules_dir = './rulefiles/'
+default_rules_dir = '../rulefiles/'
 
 class EspMorfoWordLabeler:
 	root_flags = {}
@@ -168,7 +168,8 @@ class EspMorfoWordLabeler:
 		return ' '.join(words)
 
 	def extract_word_features(self, word, pos=None):
-		if re.match('n',pos) and re.search('[_.]|^[A-Z]+$|^[0-9]+$', word):
+		if pos: pos = pos.lower().replace('j', 'a')
+		if pos and re.match('n',pos) and re.search('[_.]|^[A-Z]+$|^[0-9]+$', word):
 			return {'pos':'n','gender':'','number':''}
 		orig_word = word
 		word = word.lower()
@@ -219,6 +220,7 @@ class EspMorfoWordLabeler:
 		return sorted(val_counts.items(), key=lambda x:x[1], reverse=True)[0][0]
 
 	def lemmatize(self, word, pos=None):
+		if pos: pos = pos.lower().replace('j', 'a')
 		word = word.lower()
 		for attempt in range(2):
 			if word in self.word_lemmas:
