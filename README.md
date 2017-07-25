@@ -32,7 +32,7 @@ For details about the included materials and tools, their construction and
 formats, and evaluation on an annotated corpus, see the following paper:
 
    * Natalie Ahn. 2017. "Rule-Based Spanish Morphological Analyzer Built 
-   From Spell Checking Lexicon." arXiv preprint, arXiv:[coming soon].
+   From Spell Checking Lexicon." arXiv preprint, arXiv:1707.07331 [cs.CL].
 
 Lexical and morphological rules in the accompanying files are derived from
 the following project, distributed under the same GNU GPL license:
