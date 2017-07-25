@@ -31,12 +31,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 For details about the included materials and tools, their construction and
 formats, and evaluation on an annotated corpus, see the following paper:
 
-   * Natalie Ahn. 2017. "Rule-Based Spanish Morphological Analyzer Built 
-   From Spell Checking Lexicon." arXiv preprint, arXiv:1707.07331 [cs.CL].
+   * Natalie Ahn. 2017. "[Rule-Based Spanish Morphological Analyzer Built 
+   From Spell Checking Lexicon](https://arxiv.org/pdf/1707.07331.pdf)."
+   arXiv preprint, arXiv:1707.07331 [cs.CL].
 
 Lexical and morphological rules in the accompanying files are derived from
 the following project, distributed under the same GNU GPL license:
 
-   * Santiago Rodríguez and Jesús Carretero. 1996. "A Formal Approach to 
-   Spanish Morphology: The COES Tools." Procesamiento del Lenguaje Natural, 
-   19 September 1996. http://www.datsi.fi.upm.es/~coes/coes.html
+   * Santiago Rodríguez and Jesús Carretero. 1996. "[A Formal Approach to 
+   Spanish Morphology: The COES Tools](http://www.datsi.fi.upm.es/~coes/publications/sepln.pdf)."
+   Procesamiento del Lenguaje Natural, 19 September 1996.
+   [COES Project Site](http://www.datsi.fi.upm.es/~coes/coes.html)
