@@ -41,4 +41,4 @@ the following project, distributed under the same GNU GPL license:
    * Santiago Rodríguez and Jesús Carretero. 1996. "[A Formal Approach to 
    Spanish Morphology: The COES Tools](http://www.datsi.fi.upm.es/~coes/publications/sepln.pdf)."
    Procesamiento del Lenguaje Natural, 19 September 1996.
-   [COES Project Site](http://www.datsi.fi.upm.es/~coes/coes.html)
+   [[COES Project Site]](http://www.datsi.fi.upm.es/~coes/coes.html)
