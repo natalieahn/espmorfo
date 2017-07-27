@@ -1,5 +1,11 @@
-# ESPMORFO
-# Class with tools for morphological analysis of Spanish text.
+# EspMorfo
+# Tools for morphological analysis of Spanish text.
+# -----------------------------------------------------------------------------
+# Class included: EspMorfoWordLabeler
+# Public methods: split_contractions(text),
+#                 extract_word_features(word[, pos]),
+#                 lemmatize(word[, pos]),
+#                 nominalize(word)
 # -----------------------------------------------------------------------------
 # Copyright 2017 Natalie Ahn
 # 
@@ -13,7 +19,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details, <http://www.gnu.org/licenses/>.
 # -----------------------------------------------------------------------------
-# For an explanation of the included files and performance evaluation,
+# For detailed explanation of the included files and performance evaluation,
 # see the following paper:
 #
 # Natalie Ahn. 2017.
@@ -52,7 +58,6 @@ class EspMorfoWordLabeler:
 		self._read_in_rules(rule_file)
 		self._read_in_pronouns(rule_file)
 		self._read_in_contractions(rule_file)
-		self._read_in_entities(rule_file)
 
 	def _read_in_vocab(self, vocab_file):
 		with open(vocab_file, 'r') as f:
@@ -117,17 +122,6 @@ class EspMorfoWordLabeler:
 			for r in range(1,sheet.nrows):
 				row = [self._convert_spec_chars(x) for x in sheet.row_values(r) if x]
 				self.contractions[row[0]] = row[1]
-
-	def _read_in_entities(self, rule_file):
-		with xlrd.open_workbook(rule_file) as wb:
-			sheet = wb.sheet_by_name('entities')
-			for r in range(sheet.nrows):
-				row = sheet.row_values(r)
-				depth = self._get_depth(row)
-				subtree = self.entity_tree
-				for d in range(depth):
-					subtree = subtree[1][-1]
-				subtree[1].append([row[depth],[]])
 
 	def _get_depth(self, row):
 		depth = 0
@@ -263,7 +257,7 @@ class EspMorfoWordLabeler:
 		('H' in self.root_flags[word] or 'I' in self.root_flags[word]):
 			self._construct_forms(word, self.root_flags[word])
 			if word in self.nom_forms: return self.nom_forms[word]
-		root = lemmatize(word)
+		root = self.lemmatize(word)
 		if root in self.nom_forms: return self.nom_forms[root]
 		return word
 
@@ -287,43 +281,15 @@ class EspMorfoWordLabeler:
 						else:
 							self.word_feats[no_sp].append(rule)
 							self.word_lemmas[no_sp].append(root)
-						if re.match('H|I', flag):
+						if re.match('H|I', flag) and root != form:
 							if root not in self.nom_forms:
 								self.nom_forms[root] = [form]
-							else: self.nom_forms[root].insert(0, form)
-							no_sp = self._remove_spec_chars(root)
-							if no_sp not in self.nom_forms:
-								self.nom_forms[no_sp] = [form]
-							else: self.nom_forms[no_sp].append(form)
-
-	def get_entity_path(self, node):
-		(match1, path1) = self._get_entity_tree_path(self.entity_tree, node['form'])
-		if match1 and path1:
-			return path1[1:]
-		phrasetoks = [tok for (tok,lem,tag,dep) in node['premods']]+[node['form']]+ \
-					 [tok for (tok,lem,tag,dep) in node['postmods']]
-		phrase = ' '.join(phrasetoks)
-		(match2, path2) = self._get_entity_tree_path(self.entity_tree, phrase)
-		if match2 and path2:
-			return path2[1:]
-		return []
-
-	def _get_entity_tree_path(self, entity_tree, phrase):
-		match = False
-		path = []
-		if re.search(':', entity_tree[0]):
-			parts = entity_tree[0].split(':')
-			if re.search('\\b('+parts[1]+')', phrase.lower()):
-				path.append(parts[0])
-				match = True
-		else: path.append(entity_tree[0])
-		if len(entity_tree)>1 and type(entity_tree[1])==list:
-			for subtree in entity_tree[1]:
-				match, subpath = self._get_entity_tree_path(subtree, phrase)
-				if match:
-					path.extend(subpath)
-					break
-		return match, path
-
-
+							elif form not in self.nom_forms[root]:
+								self.nom_forms[root].append(form)
+							root_no_sp = self._remove_spec_chars(root)
+							if root_no_sp != root:
+								if no_sp not in self.nom_forms:
+									self.nom_forms[root_no_sp] = [form]
+								elif form not in self.nom_forms[root_no_sp]:
+									self.nom_forms[root_no_sp].append(form)
 
