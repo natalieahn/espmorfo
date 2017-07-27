@@ -1,5 +1,5 @@
 # ESPMORFO
-# Classes and methods for morphological analysis of Spanish text.
+# Class with tools for morphological analysis of Spanish text.
 # -----------------------------------------------------------------------------
 # Copyright 2017 Natalie Ahn
 # 
@@ -13,8 +13,16 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details, <http://www.gnu.org/licenses/>.
 # -----------------------------------------------------------------------------
-# Lexical and morphological rules in the accompanying files are derived from
-# the following project, distributed under the same GNU GPL license:
+# For an explanation of the included files and performance evaluation,
+# see the following paper:
+#
+# Natalie Ahn. 2017.
+# "Rule-Based Spanish Morphological Analyzer Built From Spell Checking Lexicon."
+# arXiv preprint, arXiv: 1707.07331 [cs.CL].
+# https://arxiv.org/pdf/1707.07331.pdf
+# -----------------------------------------------------------------------------
+# The lexicon and morphological rules are derived from the following project,
+# distributed under the same GNU GPL license:
 #
 # Santiago Rodríguez and Jesús Carretero. 1996.
 # "A Formal Approach to Spanish Morphology: The COES Tools."
