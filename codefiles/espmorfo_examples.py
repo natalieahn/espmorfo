@@ -41,3 +41,5 @@ for i in range(len(toks_tags)):
 	if re.match('V|.+S$', toks_tags[i][1]):
 		print('token: %s, lemma: %s' % (toks_tags[i][0], tok_lems[i]))
 
+# Nominalize verbs:
+print(wordlabeler.nominalize('familiarizar'))
