@@ -1,4 +1,4 @@
-# espmorfo
+# EspMorfo
 Spanish Morphological Analysis Tools
 
 This repository contains lexical and morphological rule files and Python code
