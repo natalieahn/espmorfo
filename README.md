@@ -35,7 +35,7 @@ formats, and evaluation on an annotated corpus, see the following paper:
    From Spell Checking Lexicon](https://arxiv.org/pdf/1707.07331.pdf)."
    arXiv preprint, arXiv:1707.07331 [cs.CL].
 
-Lexical and morphological rules in the accompanying files are derived from
+The lexicon and morphological rules in the accompanying files are derived from
 the following project, distributed under the same GNU GPL license:
 
    * Santiago Rodríguez and Jesús Carretero. 1996. "[A Formal Approach to 
